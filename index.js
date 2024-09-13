@@ -23,12 +23,20 @@ form.addEventListener("submit",async (event)=>{
         gallery.classList.add("gallery");
         createImageElement();
         showMoreButton.classList.remove("hide");
+    }else{
+            gallery.classList.remove("gallery");
+            showMoreButton.classList.add("hide");
+            alert("No Result Found!");
     }
 });
 showMoreButton.addEventListener("click", async () =>{
-    page++;
-    await generateImage(lastSearchTerm);
-    createImageElement();
+    if(resultFound){
+        page++;
+        await generateImage(lastSearchTerm);
+        createImageElement();
+    }else{
+        showMoreButton.classList.add("hide");
+    }
 });
 
 
@@ -62,9 +70,6 @@ async function generateImage(queryText) {
         
         if(results.length === 0){
             resultFound = false;
-            gallery.classList.remove("gallery");
-            showMoreButton.classList.add("hide");
-            alert("No Result Found!");
         }else{
             resultFound = true;
             imageArr = results.map((result) =>{

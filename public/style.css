@@ -131,3 +131,18 @@ button{
 .hide{
     display: none;
 }
+
+
+/* media queries for responsive website  */
+@media (max-width:599px){
+
+}
+@media (min-width:600px){
+
+}
+@media (min-width:900px){
+
+}
+@media (min-width:1200px){
+
+}
