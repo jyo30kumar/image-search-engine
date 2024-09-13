@@ -78,7 +78,10 @@ async function generateImage(queryText) {
                 const image = document.createElement('img');
                 image.src= result.urls.small;
                 image.alt = result.alt_description;
-                return image;
+                const imageLink = document.createElement('a');
+                imageLink.href = result.links.html;
+                imageLink.target = "_blank";
+                return {image : image,imageLink : imageLink};
             }); 
         }               
         
@@ -91,7 +94,8 @@ async function generateImage(queryText) {
 // function for creating image element 
 function createImageElement(){
     imageArr.map((img) =>{
-        gallery.appendChild(img);
+        img.imageLink.appendChild(img.image);
+        gallery.appendChild(img.imageLink);
     });
 }
 
