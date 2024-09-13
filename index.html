@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Search Engine</title>
+    <link rel="stylesheet" href="./public/style.css">
+</head>
+<body>
+    <div class="hero">
+            <h1>Image Search Engine</h1>
+        <div class="image-container">
+            <form method="get" id="form" class="form-style">
+                <input type="text" id="searchText" name="searchText" placeholder="Search any image here..." required>
+                <button id="searchButton">Search</button>
+            </form>
+            <div id="gallery"></div>                  
+            <button id="showMore" class="show-more hide">Show More</button>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
