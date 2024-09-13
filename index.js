@@ -9,6 +9,7 @@ let resultFound = true;
 let page = 1;
 let imageArr = [];
 let lastSearchTerm = "";
+let lastPage;
 
 
 // event listener
@@ -31,7 +32,7 @@ form.addEventListener("submit",async (event)=>{
 });
 showMoreButton.addEventListener("click", async () =>{
     if(resultFound){
-        page++;
+        lastPage = page++;
         await generateImage(lastSearchTerm);
         createImageElement();
     }else{
@@ -65,11 +66,10 @@ async function generateImage(queryText) {
             throw new Error(`Response Status ${response.status}`);
         }
         const data = await response.json();
-        const results = data.results;
-        console.log(results);
-        
+        const results = data.results;        
         if(results.length === 0){
             resultFound = false;
+            page = lastPage;
         }else{
             resultFound = true;
             imageArr = results.map((result) =>{
