@@ -17,6 +17,7 @@ searchButton.addEventListener("mouseenter", toggleFormStyle);
 searchButton.addEventListener("mouseleave", toggleFormStyle);
 form.addEventListener("submit",async (event)=>{
     event.preventDefault();
+    page = 1;
     imageReset();
     lastSearchTerm = searchText.value;
     await generateImage(lastSearchTerm);
@@ -35,8 +36,9 @@ showMoreButton.addEventListener("click", async () =>{
         lastPage = page++;
         await generateImage(lastSearchTerm);
         createImageElement();
-    }else{
-        showMoreButton.classList.add("hide");
+        if(!resultFound){
+                showMoreButton.classList.add("hide");
+            }
     }
 });
 
