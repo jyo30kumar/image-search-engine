@@ -81,13 +81,14 @@ async function generateImage(queryText) {
                 const imageLink = document.createElement('a');
                 imageLink.href = result.links.html;
                 imageLink.target = "_blank";
-                return {image : image,imageLink : imageLink};
+                const imgDesc = document.createElement('div');
+                imgDesc.classList.add("desc");
+                imgDesc.innerHTML = result.alt_description;                
+                return {image : image,imageLink : imageLink, imgDesc : imgDesc};
             }); 
         }               
-        
     } catch (error) {
         console.log("Error Message : ", error.message);
-        
     }
 }
 
@@ -95,6 +96,7 @@ async function generateImage(queryText) {
 function createImageElement(){
     imageArr.map((img) =>{
         img.imageLink.appendChild(img.image);
+        img.imageLink.appendChild(img.imgDesc);        
         gallery.appendChild(img.imageLink);
     });
 }
